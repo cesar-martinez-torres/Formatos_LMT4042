@@ -1,0 +1,977 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.18907895119617119 0.4071428441847439 0.8935792380330428 0.9586011478696955
+  position -2.840637675723116 -6.8991593934508115 1.9980637250363849
+}
+TexturedBackground {
+  texture "stadium"
+}
+TexturedBackgroundLight {
+  texture "stadium"
+}
+Solid {
+  translation 1 -2.5 0.05
+  children [
+    DEF longw Shape {
+      appearance CementTiles {
+        textureTransform TextureTransform {
+          scale 38 1
+        }
+      }
+      geometry Box {
+        size 0.01 5 0.1
+      }
+      castShadows FALSE
+      isPickable FALSE
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE longw
+}
+Solid {
+  translation -1 -2.5 0.05
+  children [
+    DEF longwall Shape {
+      appearance CementTiles {
+        textureTransform TextureTransform {
+          scale 38 1
+        }
+      }
+      geometry Box {
+        size 0.01 5 0.1
+      }
+      castShadows FALSE
+      isPickable FALSE
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE longwall
+}
+Solid {
+  translation 0 -5 0.05
+  rotation 0 0 1 1.5708003061004252
+  children [
+    Shape {
+      appearance CementTiles {
+        textureTransform TextureTransform {
+          scale 38 1
+        }
+      }
+      geometry DEF wall Box {
+        size 0.01 2 0.1
+      }
+      castShadows FALSE
+      isPickable FALSE
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE wall
+}
+Solid {
+  translation 1.99372e-05 -0.01 0.05
+  rotation 0 0 1 1.5708003061004252
+  children [
+    Shape {
+      appearance CementTiles {
+        textureTransform TextureTransform {
+          scale 38 1
+        }
+      }
+      geometry DEF wall Box {
+        size 0.01 2 0.1
+      }
+      castShadows FALSE
+      isPickable FALSE
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE wall
+}
+Robot {
+  translation -0.269996 -4.85 0.04
+  rotation 0 0 1 1.5708
+  children [
+    DEF BODY Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "D:/Tesis/Prácticas/Actividad/libraries/textures/Car_texture.jpg"
+          ]
+        }
+        textureTransform TextureTransform {
+        }
+      }
+      geometry Box {
+        size 0.2 0.1 0.05
+      }
+      castShadows FALSE
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.05 0.06 0
+        rotation 1 3.9252239376397585e-17 -3.9252239376397585e-17 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance Appearance {
+              material Material {
+                ambientIntensity 0.1
+                diffuseColor 0.1 0.9 0.2
+              }
+              texture ImageTexture {
+                url [
+                  "D:/Tesis/Prácticas/Actividad/libraries/textures/Material-Pattern-Texture-Car-Wheel-Rubber-6864325.jpg"
+                ]
+              }
+              textureTransform TextureTransform {
+                rotation 8
+                scale 1 6
+              }
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+              subdivision 24
+            }
+            castShadows FALSE
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.05 -0.06 0
+        rotation 1 1.1775671812919274e-16 3.925223937639758e-17 1.5707999999999998
+        children [
+          USE WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.05 0.06 0
+        rotation 1 3.925223937639758e-17 0 1.5708
+        children [
+          USE WHEEL
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL4 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.05 -0.06 0
+        rotation 1 -3.925223937639758e-17 0 1.5708
+        children [
+          USE WHEEL
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF DS_RIGHT DistanceSensor {
+      translation 0.1 -0.03 0
+      rotation 0 0 1 -0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+          castShadows FALSE
+        }
+      ]
+      name "ds_right"
+    }
+    DEF DS_LEFT DistanceSensor {
+      translation 0.1 0.03 0
+      rotation 0 0 1 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "4wheel"
+}
+Solid {
+  translation -0.4 -4.5 0.05
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 10 1
+        }
+      }
+      geometry Box {
+        size 0.01 1 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "1mwall"
+}
+Solid {
+  translation 0.78 -3.25 0.05
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 10 1
+        }
+      }
+      geometry Box {
+        size 0.01 1 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "1mwall(1)"
+}
+Solid {
+  translation 0.01 -2.43 0.05
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 10 1
+        }
+      }
+      geometry Box {
+        size 0.01 1 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "1mwall(2)"
+}
+Solid {
+  translation -0.83 -1.26 0.05
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 10 1
+        }
+      }
+      geometry Box {
+        size 0.01 1 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "1mwall(4)"
+}
+Solid {
+  translation -0.83 -0.79 0.05
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 10 1
+        }
+      }
+      geometry Box {
+        size 0.01 1 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "1mwall(5)"
+}
+Solid {
+  translation -0.489998 -1.94 0.05
+  rotation 0 0 -1 -1.5708053071795867
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 10 1
+        }
+      }
+      geometry Box {
+        size 0.01 1 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "1mwall(3)"
+}
+Solid {
+  translation 0.270002 -0.36 0.05
+  rotation 0 0 -1 -1.5708053071795867
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 10 1
+        }
+      }
+      geometry Box {
+        size 0.01 1 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "1mwall(6)"
+}
+Solid {
+  translation -0.15 -4.39 0.05
+  rotation 0 0 1 1.5708
+  children [
+    DEF __5wall Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.52 -4.75 0.05
+  rotation 0 0 -1 -5.307179586466759e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(1)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.52 -4.75 0.05
+  rotation 0 0 -1 -5.307179586466759e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(2)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.26 -4.02 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(3)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.54 -3.75 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(8)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.00999988 -3.78 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(5)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.489998 -2.13 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(13)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.759998 -0.55 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(22)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.250002 -1.14 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(21)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.010002 -1.25 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(15)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.010002 -1.25 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(19)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.010002 -0.95 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(17)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.239998 -0.7 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(18)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.149998 -1.5 0.05
+  rotation 0 0 1 1.5708
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(14)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.470001 -2.19 0.05
+  rotation 0 0 1 1.01503e-06
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(9)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.24 -3.69 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(6)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.1 -2.93 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(10)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.739999 -2.38 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(12)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.509999 -1.05 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(16)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.500001 -1.05 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(20)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.75 -3.14 0.05
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(11)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.77 -4.2 0.05
+  rotation 0 0 1 3.14159
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(4)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation -0.68 -3.74 0.05
+  rotation 0 0 1 3.14159
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry Box {
+        size 0.01 0.5 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.5mwall(7)"
+  boundingObject USE __5wall
+}
+Solid {
+  translation 0.89 -3.95 0.05
+  rotation 0 0 -1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry DEF __25m Box {
+        size 0.01 0.25 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.25mwall"
+  boundingObject USE __25m
+}
+Solid {
+  translation 0.88 -1.05 0.05
+  rotation 0 0 -1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry DEF __25m Box {
+        size 0.01 0.25 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.25mwall(2)"
+  boundingObject USE __25m
+}
+Solid {
+  translation -0.13 -0.88 0.05
+  rotation 0 0 -1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry DEF __25m Box {
+        size 0.01 0.25 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.25mwall(4)"
+  boundingObject USE __25m
+}
+Solid {
+  translation 0.52 -1.5 0.05
+  rotation 0 0 -1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry DEF __25m Box {
+        size 0.01 0.25 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.25mwall(3)"
+  boundingObject USE __25m
+}
+Solid {
+  translation -0.55 -3.69 0.05
+  rotation 0 0 -1 -1.5707953071795862
+  children [
+    Shape {
+      appearance CorrugatedPvc {
+        textureTransform TextureTransform {
+          scale 5 1
+        }
+      }
+      geometry DEF __25m Box {
+        size 0.01 0.25 0.1
+      }
+      isPickable FALSE
+    }
+  ]
+  name "0.25mwall(1)"
+  boundingObject USE __25m
+}
+Solid {
+  translation 0 -2.5 0
+  children [
+    Shape {
+      appearance Asphalt {
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            -1 -2.5 0
+            1 -2.5 0
+            -1 2.5 0
+            1 2.5 0
+          ]
+        }
+        texCoord TextureCoordinate {
+          point [
+            0 0
+            4 0
+            0 10
+            4 10
+          ]
+        }
+        coordIndex [
+          2, 0, 1, 3, -1
+        ]
+        texCoordIndex [
+          2, 0, 1, 3, -1
+        ]
+      }
+    }
+  ]
+  name "floor"
+  model "floor"
+  boundingObject Plane {
+    size 2 5
+  }
+  locked TRUE
+}
+Solid {
+  translation 0 -0.19 0.001
+  children [
+    Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "D:/Tesis/Prácticas/Actividad/libraries/textures/images.png"
+          ]
+        }
+        textureTransform TextureTransform {
+          scale 2 1
+        }
+      }
+      geometry Plane {
+        size 2 0.35
+      }
+      isPickable FALSE
+    }
+  ]
+}
